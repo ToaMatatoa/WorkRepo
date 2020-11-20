@@ -5,7 +5,7 @@ import com.example.myapplicationds.data.remote.model.ResponseData
 interface IContract {
 
     interface IPresenter {
-        var view: IContract.IView?
+        var view: IView?
         fun getData()
         fun onDestroy()
     }
