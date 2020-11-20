@@ -1,6 +1,7 @@
 package com.example.myapplicationds.ui
 
 import android.util.Log
+import android.view.View
 import com.example.myapplicationds.domain.DataUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

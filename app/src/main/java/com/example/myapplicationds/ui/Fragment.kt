@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplicationds.R
+import com.example.myapplicationds.data.remote.RemoteDataStore
+import com.example.myapplicationds.data.remote.RemoteRepository
 import com.example.myapplicationds.data.remote.model.ResponseData
+import com.example.myapplicationds.domain.DataUseCase
 import kotlinx.android.synthetic.main.fragment.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -28,7 +31,6 @@ class Fragment : Fragment(), IContract.IView, KodeinAware {
         get() = super.kodeinTrigger
 
     private val presenter: IContract.IPresenter by instance()
-
     private val adapterRV = Adapter()
 
     override fun onCreateView(
