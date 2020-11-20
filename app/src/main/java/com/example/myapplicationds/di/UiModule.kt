@@ -1,5 +1,8 @@
 package com.example.myapplicationds.di
 
+import com.example.myapplicationds.data.local.RoomDB
+import com.example.myapplicationds.data.remote.RemoteDataStore
+import com.example.myapplicationds.ui.Fragment
 import com.example.myapplicationds.ui.IContract
 import com.example.myapplicationds.ui.Presenter
 import org.kodein.di.Kodein

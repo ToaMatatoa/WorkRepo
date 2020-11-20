@@ -14,9 +14,11 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.KodeinTrigger
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.kcontext
 
 class Fragment : Fragment(), IContract.IView, KodeinAware {
 
+    override val kodeinContext = kcontext<Fragment>(this)
     private val parentKodein: Kodein by closestKodein()
     override val kodein: Kodein = Kodein.lazy {
         extend(parentKodein)
