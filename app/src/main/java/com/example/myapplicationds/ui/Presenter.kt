@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 class Presenter constructor(private val itemsDataUseCase: DataUseCase) : IContract.IPresenter {
 
     private val compositeDisposable = CompositeDisposable()
-    private lateinit var view: IContract.IView
+    override var view: IContract.IView? = null
 
     override fun getData() {
         compositeDisposable.add(
@@ -18,7 +18,7 @@ class Presenter constructor(private val itemsDataUseCase: DataUseCase) : IContra
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    view.showData(it)
+                    view?.showData(it)
                 }, {
                     Log.getStackTraceString(it)
                 })

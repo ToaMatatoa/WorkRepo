@@ -39,6 +39,7 @@ class Fragment : Fragment(), IContract.IView, KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
         kodeinTrigger?.trigger()
+        presenter.view = this
         return inflater.inflate(R.layout.fragment, container, false)
     }
 

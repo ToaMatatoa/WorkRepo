@@ -1,4 +1,7 @@
 package com.example.myapplicationds.data
 
-//interface DataMapper () {
+//interface DataMapper <From, To> {
+//
+//    fun mapToDataModel()
+//
 //}
