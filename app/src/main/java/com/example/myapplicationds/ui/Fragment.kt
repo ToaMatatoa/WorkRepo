@@ -27,7 +27,7 @@ class Fragment : Fragment(), IContract.IView, KodeinAware {
     override val kodeinTrigger: KodeinTrigger?
         get() = super.kodeinTrigger
 
-    private val presenter: Presenter by instance()
+    private val presenter: IContract.IPresenter by instance()
 
     private val adapterRV = Adapter()
 

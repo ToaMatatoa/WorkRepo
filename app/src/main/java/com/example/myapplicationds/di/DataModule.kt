@@ -1,9 +1,11 @@
 package com.example.myapplicationds.di
 
-import androidx.room.Room
-import com.example.myapplicationds.data.local.LocalDataStore
-import com.example.myapplicationds.data.local.LocalRepository
-import com.example.myapplicationds.data.local.RoomDB
+import android.app.Application
+//import androidx.room.Room
+//import com.example.myapplicationds.data.local.LocalDataDao
+//import com.example.myapplicationds.data.local.LocalDataStore
+//import com.example.myapplicationds.data.local.LocalRepository
+//import com.example.myapplicationds.data.local.RoomDB
 import com.example.myapplicationds.data.remote.RemoteDataStore
 import com.example.myapplicationds.data.remote.RemoteRepository
 import com.example.myapplicationds.data.remote.RetrofitService
@@ -14,7 +16,7 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import retrofit2.Retrofit
 
-object DataModule {
+object DataModule : Application() {
 
     val dataModule = Kodein.Module("data module", false) {
 
@@ -31,27 +33,29 @@ object DataModule {
         }
         bind<DataUseCase>() with singleton {
             DataUseCase(
-                remoteRepository = instance(), localRepository = instance()
+                remoteRepository = instance()//, localRepository = instance()
             )
         }
 
-        bind<RoomDB>() with singleton {
-            Room.databaseBuilder(
-                instance(),
-                RoomDB::class.java, "items-name"
-            ).build()
-        }
-
-        bind<LocalDataStore>() with singleton {
-            LocalDataStore(
-                localDataDao = instance()
-            )
-        }
-
-        bind<LocalRepository>() with singleton {
-            LocalRepository(
-                localDataStore = instance()
-            )
-        }
+//        bind<RoomDB>() with singleton {
+//            Room.databaseBuilder(
+//                instance(),
+//                RoomDB::class.java, "items-name"
+//            ).build()
+//        }
+//
+//        bind<LocalDataDao>() with provider { instance<RoomDB>().dataDao() }
+//
+//        bind<LocalDataStore>() with singleton {
+//            LocalDataStore(
+//                localDataDao = instance()
+//            )
+//        }
+//
+//        bind<LocalRepository>() with singleton {
+//            LocalRepository(
+//                localDataStore = instance()
+//            )
+//        }
     }
 }
