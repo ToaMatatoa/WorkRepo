@@ -1,7 +1,7 @@
 package com.example.myapplicationds.di
 
 import android.app.Application
-//import androidx.room.Room
+import androidx.room.Room
 //import com.example.myapplicationds.data.local.LocalDataDao
 //import com.example.myapplicationds.data.local.LocalDataStore
 //import com.example.myapplicationds.data.local.LocalRepository
@@ -13,6 +13,7 @@ import com.example.myapplicationds.domain.DataUseCase
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 import retrofit2.Retrofit
 
@@ -20,6 +21,7 @@ object DataModule : Application() {
 
     val dataModule = Kodein.Module("data module", false) {
 
+        //Remote
         bind<RetrofitService>() with singleton {
             instance<Retrofit>().create(RetrofitService::class.java)
         }
@@ -31,12 +33,8 @@ object DataModule : Application() {
                 remoteDataStore = instance()
             )
         }
-        bind<DataUseCase>() with singleton {
-            DataUseCase(
-                remoteRepository = instance()//, localRepository = instance()
-            )
-        }
 
+//        //Local
 //        bind<RoomDB>() with singleton {
 //            Room.databaseBuilder(
 //                instance(),
@@ -44,7 +42,7 @@ object DataModule : Application() {
 //            ).build()
 //        }
 //
-//        bind<LocalDataDao>() with provider { instance<RoomDB>().dataDao() }
+//        //bind<LocalDataDao>() with provider { instance<RoomDB>().dataDao() }
 //
 //        bind<LocalDataStore>() with singleton {
 //            LocalDataStore(
@@ -57,5 +55,12 @@ object DataModule : Application() {
 //                localDataStore = instance()
 //            )
 //        }
+
+        //UseCase
+        bind<DataUseCase>() with singleton {
+            DataUseCase(
+                remoteRepository = instance(), /*localRepository = instance()*/
+            )
+        }
     }
 }

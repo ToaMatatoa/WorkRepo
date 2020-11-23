@@ -5,12 +5,12 @@
 //class LocalDataStore (private val localDataDao: LocalDataDao) {
 //
 //    suspend fun getAllLocalData() : List<LocalData> = localDataDao.getAll()
+
+//    suspend fun getDataById() : List<LocalData> = localDataDao.getById()
 //
-//    suspend fun getDataById() : List<LocalData> = localDataDao.getById(id = 0)
+//    suspend fun insertData() = localDataDao.insert()
 //
-//    suspend fun insertData() = localDataDao.insert(localdata = LocalData())
+//    suspend fun updateData() = localDataDao.update()
 //
-//    suspend fun updateData() = localDataDao.update(localdata = LocalData())
-//
-//    suspend fun deleteData() = localDataDao.delete(localdata = LocalData())
+//    suspend fun deleteData() = localDataDao.delete()
 //}

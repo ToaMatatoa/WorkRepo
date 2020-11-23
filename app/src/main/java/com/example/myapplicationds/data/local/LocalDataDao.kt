@@ -8,7 +8,7 @@
 //
 //    @Query("SELECT * FROM localdata")
 //    suspend fun getAll(): List<LocalData>
-//
+
 //    @Query("SELECT * FROM localdata WHERE id = :id")
 //    suspend fun getById(id: Int): List<LocalData>
 //

@@ -4,9 +4,9 @@
 //import androidx.room.PrimaryKey
 //
 //@Entity
-//class LocalData {
+//data class LocalData(
 //    @PrimaryKey
-//    val id: String = ""
-//    val title: String = ""
-//    val body: String = ""
-//}
+//    val id: Int,
+//    val title: String,
+//    val body: String
+//)

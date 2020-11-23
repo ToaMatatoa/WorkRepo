@@ -11,15 +11,15 @@ class DataUseCase(
    //private val localRepository: LocalRepository
 ) {
 
-    fun getItemsData(): Single<List<ResponseData>> = remoteRepository.getJsonData()
+    suspend fun getItemsData(): List<ResponseData> = remoteRepository.getJsonData()
 
-//    suspend fun getAll() : List<LocalData> = localRepository.getAllLocalData()
-//
+  //  suspend fun getAll() : List<LocalData> = localRepository.getAllLocalData()
+
 //    suspend fun getDataById() : List<LocalData> = localRepository.getDataById()
-//
-//    suspend fun insertData() = localRepository.insertData()
-//
+
+ //   suspend fun insertData() {}
+
 //    suspend fun updateData() = localRepository.updateData()
-//
+
 //    suspend fun deleteData() = localRepository.deleteData()
 }

@@ -7,5 +7,5 @@
 //
 //@Database(entities = [LocalData::class], version = 1)
 //abstract class RoomDB : RoomDatabase() {
-//    abstract fun dataDao(): LocalDataDao
+//    abstract suspend fun dataDao(): LocalDataDao
 //}

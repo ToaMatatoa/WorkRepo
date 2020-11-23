@@ -3,7 +3,6 @@ package com.example.myapplicationds.data.remote
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
@@ -25,7 +24,6 @@ object RetrofitClient {
                 .baseUrl(BASE_URL)
                 .client(okHttpClient.newBuilder().build())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
         }
         return retrofit!!.create(
