@@ -1,16 +1,15 @@
-package com.example.myapplicationds.domain
-
-interface IDataMapper<ResponseData, LocalData> {
-    fun map(input: ResponseData): LocalData
-}
-
-interface IListMapper<ResponseData, LocalData> : IDataMapper<List<ResponseData>, List<LocalData>>
-
-class ListMapperImp<ResponseData, LocalData>(
-    private val mapper: IDataMapper<ResponseData, LocalData>
-) : IListMapper<ResponseData, LocalData> {
-
-    override fun map(input: List<ResponseData>): List<LocalData> {
-        return input.map { mapper.map(it) }
-    }
-}
+//package com.example.myapplicationds.domain
+//
+//import com.example.myapplicationds.data.local.model.LocalData
+//import com.example.myapplicationds.data.remote.model.ResponseData
+//
+//interface IDataMapper {
+//    fun map(input: ResponseData): LocalData
+//}
+//
+//class ListMapperImp : IDataMapper {
+//
+//    override fun map(input: ResponseData): LocalData {
+//        return input.map { input.map() }
+//    }
+//}

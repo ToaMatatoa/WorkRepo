@@ -10,7 +10,6 @@ import com.example.myapplicationds.data.remote.RemoteDataStore
 import com.example.myapplicationds.data.remote.RemoteRepository
 import com.example.myapplicationds.data.remote.RetrofitService
 import com.example.myapplicationds.domain.DataUseCase
-import com.example.myapplicationds.domain.ListMapperImp
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -60,8 +59,11 @@ object DataModule : Application() {
         //UseCase
         bind<DataUseCase>() with singleton {
             DataUseCase(
-                remoteRepository = instance(), localRepository = instance()
+                remoteRepository = instance(),
+                localRepository = instance()
             )
         }
+
+
     }
 }
