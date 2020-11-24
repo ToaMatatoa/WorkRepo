@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationds.R
+import com.example.myapplicationds.data.local.model.LocalData
 import com.example.myapplicationds.data.remote.model.ResponseData
 import kotlinx.android.synthetic.main.rv_item.view.*
 
@@ -11,10 +12,14 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private val items = mutableListOf<ResponseData>()
 
-    fun addItems(listOfItems: List<ResponseData>) {
+    fun addItemsRemote(listOfItems: List<ResponseData>) {
         items.addAll(listOfItems)
         notifyDataSetChanged()
     }
+//    fun addItemsLocale(listOfLocalItems: List<LocalData>) {
+//        items.addAll(listOfLocalItems)
+//        notifyDataSetChanged()
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         View.inflate(parent.context, R.layout.rv_item, null)

@@ -1,5 +1,7 @@
 package com.example.myapplicationds.ui
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,7 @@ import org.kodein.di.KodeinTrigger
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.kcontext
+
 
 class Fragment : Fragment(), KodeinAware {
 
@@ -35,12 +38,16 @@ class Fragment : Fragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
         kodeinTrigger?.trigger()
+
+        if (isNetworkConnected()) {
         viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {
-            adapterRV.addItems(it)
-        })
+            adapterRV.addItemsRemote(it)
+        }) }
 //        viewModel.liveDataLocalProvider.observe(viewLifecycleOwner, Observer {
 //            adapterRV.addItems(it)
 //        })
+
+
         viewModel.getData()
         return inflater.inflate(R.layout.fragment, container, false)
     }
@@ -53,4 +60,16 @@ class Fragment : Fragment(), KodeinAware {
             rv_list.adapter = adapterRV
         }
     }
+
+    fun isNetworkConnected(): Boolean {
+        return try {
+            val mConnectivityManager =
+                activity!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val mNetworkInfo = mConnectivityManager.activeNetworkInfo
+            mNetworkInfo != null
+        } catch (e: NullPointerException) {
+            false
+        }
+    }
+
 }
