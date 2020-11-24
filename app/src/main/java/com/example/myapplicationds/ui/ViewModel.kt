@@ -13,14 +13,14 @@ class ViewModel constructor(private val itemsDataUseCase: DataUseCase) : ViewMod
 
     private val liveDataRemote = MutableLiveData<List<ResponseData>>()
     val liveDataRemoteProvider: LiveData<List<ResponseData>> = liveDataRemote
-    private val liveDataLocal = MutableLiveData<List<LocalData>>()
-    val liveDataLocalProvider: LiveData<List<LocalData>> = liveDataLocal
+//    private val liveDataLocal = MutableLiveData<List<LocalData>>()
+//    val liveDataLocalProvider: LiveData<List<LocalData>> = liveDataLocal
 
     fun getData() {
 
         viewModelScope.launch {
             liveDataRemote.postValue(itemsDataUseCase.getAllFromRemote())
-            liveDataLocal.postValue(itemsDataUseCase.getAllFromDB())
+//            liveDataLocal.postValue(itemsDataUseCase.getAllFromDB())
         }
     }
 }

@@ -38,17 +38,14 @@ class Fragment : Fragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
         kodeinTrigger?.trigger()
+        viewModel.getData()
 
         if (isNetworkConnected()) {
-        viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {
-            adapterRV.addItemsRemote(it)
-        }) }
-//        viewModel.liveDataLocalProvider.observe(viewLifecycleOwner, Observer {
-//            adapterRV.addItems(it)
-//        })
+            viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {
+                adapterRV.addItemsRemote(it)
+            })
+        }
 
-
-        viewModel.getData()
         return inflater.inflate(R.layout.fragment, container, false)
     }
 
@@ -61,7 +58,7 @@ class Fragment : Fragment(), KodeinAware {
         }
     }
 
-    fun isNetworkConnected(): Boolean {
+    private fun isNetworkConnected(): Boolean {
         return try {
             val mConnectivityManager =
                 activity!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -71,5 +68,4 @@ class Fragment : Fragment(), KodeinAware {
             false
         }
     }
-
 }

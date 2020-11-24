@@ -16,10 +16,6 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
         items.addAll(listOfItems)
         notifyDataSetChanged()
     }
-//    fun addItemsLocale(listOfLocalItems: List<LocalData>) {
-//        items.addAll(listOfLocalItems)
-//        notifyDataSetChanged()
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         View.inflate(parent.context, R.layout.rv_item, null)
