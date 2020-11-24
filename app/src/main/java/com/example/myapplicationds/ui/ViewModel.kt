@@ -4,22 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplicationds.data.local.model.LocalData
 import com.example.myapplicationds.data.remote.model.ResponseData
 import com.example.myapplicationds.domain.DataUseCase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.reflect.Array.get
 
 class ViewModel constructor(private val itemsDataUseCase: DataUseCase) : ViewModel() {
 
-    private val liveData = MutableLiveData<List<ResponseData>>()
-    val liveDataProvider : LiveData<List<ResponseData>> = liveData
+    private val liveDataRemote = MutableLiveData<List<ResponseData>>()
+    val liveDataRemoteProvider: LiveData<List<ResponseData>> = liveDataRemote
+    private val liveDataLocal = MutableLiveData<List<LocalData>>()
+    val liveDataLocalProvider: LiveData<List<LocalData>> = liveDataLocal
 
     fun getData() {
 
         viewModelScope.launch {
-            liveData.postValue(itemsDataUseCase.getItemsData())
+            liveDataRemote.postValue(itemsDataUseCase.getAllFromRemote())
+            liveDataLocal.postValue(itemsDataUseCase.getAllFromDB())
         }
     }
 }

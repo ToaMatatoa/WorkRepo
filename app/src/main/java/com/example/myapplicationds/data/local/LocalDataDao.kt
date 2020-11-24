@@ -1,13 +1,16 @@
-//package com.example.myapplicationds.data.local
-//
-//import androidx.room.*
-//import com.example.myapplicationds.data.local.model.LocalData
-//
-//@Dao
-//interface LocalDataDao {
-//
-//    @Query("SELECT * FROM localdata")
-//    suspend fun getAll(): List<LocalData>
+package com.example.myapplicationds.data.local
+
+import androidx.room.Dao
+import androidx.room.Query
+import com.example.myapplicationds.data.local.model.LocalData
+
+@Dao
+interface LocalDataDao {
+
+    @Query(
+        "SELECT * FROM ${LocalData.Companion.TABLE_NAME}"
+    )
+    suspend fun getAll(): List<LocalData>
 
 //    @Query("SELECT * FROM localdata WHERE id = :id")
 //    suspend fun getById(id: Int): List<LocalData>
@@ -20,4 +23,4 @@
 //
 //    @Delete
 //    suspend fun delete(localdata: LocalData)
-//}
+}

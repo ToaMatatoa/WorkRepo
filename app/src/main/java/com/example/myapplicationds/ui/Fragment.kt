@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplicationds.R
-import com.example.myapplicationds.data.remote.model.ResponseData
 import kotlinx.android.synthetic.main.fragment.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -24,7 +23,6 @@ class Fragment : Fragment(), KodeinAware {
     override val kodein: Kodein = Kodein.lazy {
         extend(parentKodein)
     }
-
     override val kodeinTrigger: KodeinTrigger?
         get() = super.kodeinTrigger
 
@@ -37,9 +35,12 @@ class Fragment : Fragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
         kodeinTrigger?.trigger()
-        viewModel.liveDataProvider.observe(viewLifecycleOwner, Observer {
+        viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {
             adapterRV.addItems(it)
         })
+//        viewModel.liveDataLocalProvider.observe(viewLifecycleOwner, Observer {
+//            adapterRV.addItems(it)
+//        })
         viewModel.getData()
         return inflater.inflate(R.layout.fragment, container, false)
     }

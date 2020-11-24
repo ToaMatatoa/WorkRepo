@@ -2,10 +2,10 @@ package com.example.myapplicationds.di
 
 import android.app.Application
 import androidx.room.Room
-//import com.example.myapplicationds.data.local.LocalDataDao
-//import com.example.myapplicationds.data.local.LocalDataStore
-//import com.example.myapplicationds.data.local.LocalRepository
-//import com.example.myapplicationds.data.local.RoomDB
+import com.example.myapplicationds.data.local.LocalDataDao
+import com.example.myapplicationds.data.local.LocalDataStore
+import com.example.myapplicationds.data.local.LocalRepository
+import com.example.myapplicationds.data.local.RoomDB
 import com.example.myapplicationds.data.remote.RemoteDataStore
 import com.example.myapplicationds.data.remote.RemoteRepository
 import com.example.myapplicationds.data.remote.RetrofitService
@@ -34,32 +34,32 @@ object DataModule : Application() {
             )
         }
 
-//        //Local
-//        bind<RoomDB>() with singleton {
-//            Room.databaseBuilder(
-//                instance(),
-//                RoomDB::class.java, "items-name"
-//            ).build()
-//        }
-//
-//        //bind<LocalDataDao>() with provider { instance<RoomDB>().dataDao() }
-//
-//        bind<LocalDataStore>() with singleton {
-//            LocalDataStore(
-//                localDataDao = instance()
-//            )
-//        }
-//
-//        bind<LocalRepository>() with singleton {
-//            LocalRepository(
-//                localDataStore = instance()
-//            )
-//        }
+        //Local
+        bind<RoomDB>() with singleton {
+            Room.databaseBuilder(
+                instance(),
+                RoomDB::class.java, "items-name"
+            ).build()
+        }
+
+        bind<LocalDataDao>() with provider { instance<RoomDB>().dataDao() }
+
+        bind<LocalDataStore>() with singleton {
+            LocalDataStore(
+                localDataDao = instance()
+            )
+        }
+
+        bind<LocalRepository>() with singleton {
+            LocalRepository(
+                localDataStore = instance()
+            )
+        }
 
         //UseCase
         bind<DataUseCase>() with singleton {
             DataUseCase(
-                remoteRepository = instance(), /*localRepository = instance()*/
+                remoteRepository = instance(), localRepository = instance()
             )
         }
     }
