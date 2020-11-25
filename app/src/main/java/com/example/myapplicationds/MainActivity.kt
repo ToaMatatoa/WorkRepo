@@ -3,6 +3,7 @@ package com.example.myapplicationds
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplicationds.ui.Fragment
+import com.example.myapplicationds.ui.FragmentDetail
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.KodeinTrigger
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         supportActionBar?.hide()
 
+        FragmentDetail()
         supportFragmentManager.beginTransaction().replace(
             R.id.fragment_container,
             Fragment()
