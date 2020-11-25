@@ -8,7 +8,7 @@ class RemoteDataStore {
             by lazy { RetrofitClient.getRemoteData() }
 
     suspend fun getJsonData(): List<ResponseData> {
-        return  retrofitService.getData() .map { it }
+        return  retrofitService.getData()
     }
 }
 
