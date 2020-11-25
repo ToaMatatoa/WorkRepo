@@ -19,6 +19,9 @@ import org.kodein.di.generic.kcontext
 
 class Fragment : Fragment(), KodeinAware {
 
+    private val viewModel: ViewModel by instance()
+    private val adapterRV: Adapter by instance()
+
     override val kodeinContext = kcontext<Fragment>(this)
     private val parentKodein: Kodein by closestKodein()
     override val kodein: Kodein = Kodein.lazy {
@@ -27,21 +30,17 @@ class Fragment : Fragment(), KodeinAware {
     override val kodeinTrigger: KodeinTrigger?
         get() = super.kodeinTrigger
 
-    private val viewModel: ViewModel by instance()
-    private val adapterRV = Adapter()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         kodeinTrigger?.trigger()
+
         viewModel.getData()
-
         viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {
-            adapterRV.addItemsRemote(it)
+            adapterRV.addItems(it)
         })
-
         return inflater.inflate(R.layout.fragment, container, false)
     }
 

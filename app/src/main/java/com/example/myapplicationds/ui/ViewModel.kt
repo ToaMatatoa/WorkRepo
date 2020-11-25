@@ -14,7 +14,6 @@ class ViewModel (private val itemsDataUseCase: DataUseCase) : ViewModel() {
     val liveDataRemoteProvider: LiveData<List<LocalData>> = liveDataRemote
 
     fun getData() {
-
         viewModelScope.launch {
             liveDataRemote.postValue(itemsDataUseCase.getData())
         }

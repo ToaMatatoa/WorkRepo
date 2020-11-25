@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface RetrofitService {
     @GET("posts")
-    suspend fun getData(): List<ResponseData>
+    suspend fun getAPIData(): List<ResponseData>
 }

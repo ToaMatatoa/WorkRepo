@@ -11,9 +11,9 @@ class DataUseCase(
 
     suspend fun getData(): List<LocalData> {
         return try {
-            val data = remoteRepository.getJsonData()
-            val localData = data.map { it.toLocalData() }
-            localRepository.saveData(localData)
+            val remoteData = remoteRepository.getRemoteData()
+            val localData = remoteData.map { it.toLocalData() }
+            localRepository.saveLocalData(localData)
 
             localData
         } catch (e: Exception) {

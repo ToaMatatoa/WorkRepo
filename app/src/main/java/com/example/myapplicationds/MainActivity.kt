@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     override val kodein: Kodein = Kodein.lazy {
         extend(parentKodein)
     }
-
     override val kodeinTrigger: KodeinTrigger?
         get() = super.kodeinTrigger
 

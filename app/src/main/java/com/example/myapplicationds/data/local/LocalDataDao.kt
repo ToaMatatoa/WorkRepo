@@ -12,8 +12,8 @@ interface LocalDataDao {
     @Query(
         "SELECT * FROM ${LocalData.Companion.TABLE_NAME}"
     )
-    suspend fun getAll(): List<LocalData>
+    suspend fun getAllLocalData(): List<LocalData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveData(localdata: List<LocalData>)
+    suspend fun saveAllLocalData(localdata: List<LocalData>)
 }

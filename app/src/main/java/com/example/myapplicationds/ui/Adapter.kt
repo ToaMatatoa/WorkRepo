@@ -11,7 +11,7 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private val items = mutableListOf<LocalData>()
 
-    fun addItemsRemote(listOfItems: List<LocalData>) {
+    fun addItems(listOfItems: List<LocalData>) {
         items.addAll(listOfItems)
         notifyDataSetChanged()
     }

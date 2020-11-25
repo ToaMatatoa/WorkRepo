@@ -6,7 +6,7 @@ class LocalRepository(private val localDataStore: LocalDataStore) {
 
     suspend fun getAllLocalData(): List<LocalData> = localDataStore.getAllLocalData()
 
-    suspend fun saveData(localData: List<LocalData>) {
+    suspend fun saveLocalData(localData: List<LocalData>) {
         localDataStore.saveLocaleData(localData)
     }
 }

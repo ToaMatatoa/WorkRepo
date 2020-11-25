@@ -10,6 +10,7 @@ import com.example.myapplicationds.data.remote.RemoteDataStore
 import com.example.myapplicationds.data.remote.RemoteRepository
 import com.example.myapplicationds.data.remote.RetrofitService
 import com.example.myapplicationds.domain.DataUseCase
+import com.example.myapplicationds.ui.Adapter
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -64,6 +65,7 @@ object DataModule : Application() {
             )
         }
 
-
+        //Adapter
+        bind() from provider { Adapter() }
     }
 }

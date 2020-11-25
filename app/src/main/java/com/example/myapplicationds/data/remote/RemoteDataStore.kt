@@ -7,8 +7,8 @@ class RemoteDataStore {
     private val retrofitService
             by lazy { RetrofitClient.getRemoteData() }
 
-    suspend fun getJsonData(): List<ResponseData> {
-        return  retrofitService.getData()
+    suspend fun getRemoteData(): List<ResponseData> {
+        return  retrofitService.getAPIData()
     }
 }
 
