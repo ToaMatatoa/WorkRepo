@@ -1,7 +1,5 @@
 package com.example.myapplicationds.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,11 +38,9 @@ class Fragment : Fragment(), KodeinAware {
         kodeinTrigger?.trigger()
         viewModel.getData()
 
-        if (isNetworkConnected()) {
-            viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {
-                adapterRV.addItemsRemote(it)
-            })
-        }
+        viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {
+            adapterRV.addItemsRemote(it)
+        })
 
         return inflater.inflate(R.layout.fragment, container, false)
     }
@@ -55,17 +51,6 @@ class Fragment : Fragment(), KodeinAware {
         rv_list.apply {
             layoutManager = LinearLayoutManager(context)
             rv_list.adapter = adapterRV
-        }
-    }
-
-    private fun isNetworkConnected(): Boolean {
-        return try {
-            val mConnectivityManager =
-                activity!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val mNetworkInfo = mConnectivityManager.activeNetworkInfo
-            mNetworkInfo != null
-        } catch (e: NullPointerException) {
-            false
         }
     }
 }

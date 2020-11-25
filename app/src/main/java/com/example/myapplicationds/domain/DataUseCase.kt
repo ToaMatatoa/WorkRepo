@@ -7,13 +7,19 @@ import com.example.myapplicationds.data.remote.RemoteRepository
 class DataUseCase(
     private val remoteRepository: RemoteRepository,
     private val localRepository: LocalRepository
-)  {
+) {
 
     suspend fun getData(): List<LocalData> {
-        val data = remoteRepository.getJsonData()
-        val localData = data.map { it.toLocalData() }
-        localRepository.saveData(localData)
+        return try {
+            val data = remoteRepository.getJsonData()
+            val localData = data.map { it.toLocalData() }
+            localRepository.saveData(localData)
 
-        return localData
+            localData
+        } catch (e: Exception) {
+            val localData = localRepository.getAllLocalData()
+
+            localData
+        }
     }
 }

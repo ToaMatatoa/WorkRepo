@@ -32,6 +32,7 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
             with(itemView) {
 
                 tv_title.text = item.title
+                tv_body.text = item.body
             }
     }
 }
