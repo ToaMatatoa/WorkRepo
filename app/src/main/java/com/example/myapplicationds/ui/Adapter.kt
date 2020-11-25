@@ -5,14 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationds.R
 import com.example.myapplicationds.data.local.model.LocalData
-import com.example.myapplicationds.data.remote.model.ResponseData
 import kotlinx.android.synthetic.main.rv_item.view.*
 
 class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-    private val items = mutableListOf<ResponseData>()
+    private val items = mutableListOf<LocalData>()
 
-    fun addItemsRemote(listOfItems: List<ResponseData>) {
+    fun addItemsRemote(listOfItems: List<LocalData>) {
         items.addAll(listOfItems)
         notifyDataSetChanged()
     }
@@ -29,7 +28,7 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: ResponseData) =
+        fun bind(item: LocalData) =
             with(itemView) {
 
                 tv_title.text = item.title

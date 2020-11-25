@@ -11,16 +11,13 @@ import kotlinx.coroutines.launch
 
 class ViewModel constructor(private val itemsDataUseCase: DataUseCase) : ViewModel() {
 
-    private val liveDataRemote = MutableLiveData<List<ResponseData>>()
-    val liveDataRemoteProvider: LiveData<List<ResponseData>> = liveDataRemote
-//    private val liveDataLocal = MutableLiveData<List<LocalData>>()
-//    val liveDataLocalProvider: LiveData<List<LocalData>> = liveDataLocal
+    private val liveDataRemote = MutableLiveData<List<LocalData>>()
+    val liveDataRemoteProvider: LiveData<List<LocalData>> = liveDataRemote
 
     fun getData() {
 
         viewModelScope.launch {
-            liveDataRemote.postValue(itemsDataUseCase.getAllFromRemote())
-//            liveDataLocal.postValue(itemsDataUseCase.getAllFromDB())
+            liveDataRemote.postValue(itemsDataUseCase.getData())
         }
     }
 }
