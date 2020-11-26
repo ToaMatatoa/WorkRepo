@@ -2,7 +2,7 @@ package com.example.myapplicationds
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplicationds.ui.Fragment
+import com.example.myapplicationds.ui.FragmentShowRVData
 import com.example.myapplicationds.ui.FragmentDetail
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -15,20 +15,18 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     override val kodein: Kodein = Kodein.lazy {
         extend(parentKodein)
     }
-    override val kodeinTrigger: KodeinTrigger?
-        get() = super.kodeinTrigger
+    override val kodeinTrigger = KodeinTrigger()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        kodeinTrigger?.trigger()
+        kodeinTrigger.trigger()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         supportActionBar?.hide()
-
-        FragmentDetail()
+        
         supportFragmentManager.beginTransaction().replace(
             R.id.fragment_container,
-            Fragment()
+            FragmentShowRVData()
         ).commit()
     }
 }

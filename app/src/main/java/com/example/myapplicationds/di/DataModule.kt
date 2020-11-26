@@ -64,8 +64,5 @@ object DataModule : Application() {
                 localRepository = instance()
             )
         }
-
-        //Adapter
-        bind() from provider { Adapter() }
     }
 }
