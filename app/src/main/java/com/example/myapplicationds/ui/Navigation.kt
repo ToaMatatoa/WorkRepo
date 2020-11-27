@@ -2,6 +2,7 @@ package com.example.myapplicationds.ui
 
 import androidx.fragment.app.FragmentTransaction
 import com.example.myapplicationds.MainActivity
+import com.example.myapplicationds.R
 import java.lang.ref.WeakReference
 
 class Navigation {
@@ -10,7 +11,7 @@ class Navigation {
     private val activity: MainActivity?
         get() = activityRef.get()
 
-    fun attach(activity: MainActivity){
+    fun attach(activity: MainActivity) {
         activityRef = WeakReference(activity)
     }
 
@@ -18,7 +19,7 @@ class Navigation {
         activity?.run {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(
-                com.example.myapplicationds.R.id.fragment_container,
+                R.id.fragment_container,
                 FragmentDetail()
             )
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

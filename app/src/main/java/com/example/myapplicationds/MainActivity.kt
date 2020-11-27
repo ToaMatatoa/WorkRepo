@@ -20,13 +20,17 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
     private val navigator: Navigation by instance()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
         kodeinTrigger.trigger()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         supportActionBar?.hide()
-        
+
         supportFragmentManager.beginTransaction().replace(
             R.id.fragment_container,
             FragmentShowRVData()
@@ -35,6 +39,6 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
     override fun onResume() {
         super.onResume()
-        navigator.attach(MainActivity())
+        navigator.attach(activity = this)
     }
 }

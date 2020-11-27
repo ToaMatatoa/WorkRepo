@@ -1,5 +1,6 @@
 package com.example.myapplicationds.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,12 +29,16 @@ class FragmentShowRVData : Fragment(), KodeinAware {
     private val viewModel: ViewModel by instance()
     private var adapterRV = Adapter(viewModel::navigateToFragmentDetail)
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        kodeinTrigger.trigger()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        kodeinTrigger.trigger()
 
         viewModel.getData()
         viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {

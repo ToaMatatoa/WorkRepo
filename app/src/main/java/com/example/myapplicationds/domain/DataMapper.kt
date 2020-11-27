@@ -10,8 +10,8 @@ fun ResponseData.toLocalData() = LocalData(
     body = body
 )
 
-fun ResponseData.toDomainData() = DomainData(
-    id = id,
-    title = title,
-    body = body
-)
+//fun ResponseData.toDomainData() = DomainData(
+//    id = id,
+//    title = title,
+//    body = body
+//)
