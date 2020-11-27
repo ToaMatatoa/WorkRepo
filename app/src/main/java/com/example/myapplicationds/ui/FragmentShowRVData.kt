@@ -16,7 +16,6 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.kcontext
 
-
 class FragmentShowRVData : Fragment(), KodeinAware {
 
     override val kodeinContext = kcontext<Fragment>(this)
@@ -27,7 +26,7 @@ class FragmentShowRVData : Fragment(), KodeinAware {
     override val kodeinTrigger = KodeinTrigger()
 
     private val viewModel: ViewModel by instance()
-    private var adapterRV = Adapter {}
+    private var adapterRV = Adapter(viewModel::navigateToFragmentDetail)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +46,6 @@ class FragmentShowRVData : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dFragment: () -> Unit = {}
         rv_list.apply {
             layoutManager = LinearLayoutManager(context)
             rv_list.adapter = adapterRV

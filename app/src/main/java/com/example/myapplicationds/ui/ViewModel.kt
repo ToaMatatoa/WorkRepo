@@ -8,10 +8,13 @@ import com.example.myapplicationds.data.local.model.LocalData
 import com.example.myapplicationds.domain.DataUseCase
 import kotlinx.coroutines.launch
 
-class ViewModel (private val itemsDataUseCase: DataUseCase) : ViewModel() {
+class ViewModel(private val itemsDataUseCase: DataUseCase, private val navigation: Navigation) :
+    ViewModel() {
 
     private val liveDataRemote = MutableLiveData<List<LocalData>>()
     val liveDataRemoteProvider: LiveData<List<LocalData>> = liveDataRemote
+
+    fun navigateToFragmentDetail() = navigation.navigateToFragmentDetail()
 
     fun getData() {
         viewModelScope.launch {

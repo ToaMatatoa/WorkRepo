@@ -22,7 +22,7 @@ class Adapter(private val onItemClicked: () -> Unit) : RecyclerView.Adapter<Adap
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position]) { }
+        holder.bind(items[position])
         with(holder.itemView) {
             setOnClickListener { onItemClicked.invoke() }
         }
@@ -32,12 +32,11 @@ class Adapter(private val onItemClicked: () -> Unit) : RecyclerView.Adapter<Adap
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: LocalData, listener: () -> Unit) =
+        fun bind(item: LocalData) =
             with(itemView) {
 
                 tv_title.text = item.title
                 tv_body.text = item.body
-                setOnClickListener { listener }
             }
     }
 }
