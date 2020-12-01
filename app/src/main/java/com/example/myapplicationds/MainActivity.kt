@@ -8,27 +8,23 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.KodeinTrigger
 import org.kodein.di.android.closestKodein
+import org.kodein.di.android.retainedKodein
 import org.kodein.di.generic.instance
 
 class MainActivity : AppCompatActivity(), KodeinAware {
 
     private val parentKodein: Kodein by closestKodein()
-    override val kodein: Kodein = Kodein.lazy {
+    override val kodein: Kodein by retainedKodein {
         extend(parentKodein)
     }
     override val kodeinTrigger = KodeinTrigger()
 
     private val navigator: Navigation by instance()
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        kodeinTrigger.trigger()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        kodeinTrigger.trigger()
         supportActionBar?.hide()
 
         supportFragmentManager.beginTransaction().replace(

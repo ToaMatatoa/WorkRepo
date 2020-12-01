@@ -22,8 +22,8 @@ class ViewModel(private val itemsDataUseCase: DataUseCase, private val navigatio
         }
     }
 
-    fun passDataToFragmentDetail(item: LocalData) {
+ /*   fun passDataToFragmentDetail(item: LocalData) {
         liveDataRemote.value = listOf(item)
-    }
+    }*/
 }
 
