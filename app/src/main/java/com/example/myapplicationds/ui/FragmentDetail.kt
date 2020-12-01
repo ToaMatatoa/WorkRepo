@@ -34,9 +34,9 @@ class FragmentDetail : Fragment(), KodeinAware {
     ): View? {
         kodeinTrigger.trigger()
 
-//        viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer {
-//            val data = viewModel.passDataToFragmentDetail(LocalData(title = "", body = "", id = 0))
-//        })
+        viewModel.liveDataRemoteProvider.observe(viewLifecycleOwner, Observer<List<LocalData>> {
+            val data = viewModel.passDataToFragmentDetail(LocalData(title = "", body = "", id = 0))
+        })
 
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
